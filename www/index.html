@@ -62,6 +62,7 @@
         $("#display").html("detele fail:"+JSON.stringify(error));   
       })
     }
+
     function updateData() {
       UTdata.fetch()
       .then(function(uTdata){
@@ -72,16 +73,29 @@
       .then(function(results){
         $("#display").removeClass();
         $("#display").addClass("bg-success");
-        $("#display").html("detele success");
+        $("#display").html("update success");
       })
       .catch(function(error){
         $("#display").removeClass();
         $("#display").addClass("bg-warning");
-        $("#display").html("detele fail:"+JSON.stringify(error));   
+        $("#display").html("update fail:"+JSON.stringify(error));   
       })
     }
+
     function countData() {
+      UTdata.count().fetchAll()
+      .then(function(results){
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html(results.count);
+      })
+      .catch(function(error){
+        $("#display").removeClass();
+        $("#display").addClass("bg-warning");
+        $("#display").html("count fail:"+JSON.stringify(error));   
+      })
     }
+    
     function sortData() {
     }
     </script>
@@ -100,7 +114,7 @@
   </div>
   <div>
     <input type="text" id="update" placeholder="更新">
-    <a onclick="updateData()" class="btn btn-outline-primary" role="button">Update</a>
+    <a onclick="updateData()" class="btn btn-outline-secondary" role="button">Update</a>
   </div>
   <div id="display" class="text-light bg-info">
     Results
